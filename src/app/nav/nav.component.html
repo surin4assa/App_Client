@@ -1,28 +1,30 @@
-<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary">
   <div class="container">
-    <a class="navbar-brand" href="#">Dating App</a>
-      <ul class="navbar-nav me-auto mb-2 mb-md-0" *ngIf="accountService.currentUser$ | async">
-        <li class="nav-item">
-          <a class="nav-link" href="#">Matches</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Lists</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Messages</a>
-        </li>
+    <a class="navbar-brand" routerLink='/' routerLinkActive='active'>Dating App</a>
+      <ul class="navbar-nav me-auto mb-2 mb-md-0">
+        <ng-container *ngIf="(accountService.currentUser$ | async)">
+          <li class="nav-item">
+            <a class="nav-link" routerLink='/members' routerLinkActive='active'>Matches</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink='/lists' routerLinkActive='active'>Lists</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink='/messages' routerLinkActive='active'>Messages</a>
+          </li>
+        </ng-container>
       </ul>
 
-      <div class="btn-group" dropdown *ngIf="accountService.currentUser$ | async">
-        <button id="button-animated" dropdownToggle type="button" class="btn btn-info dropdown-toggle"
-                aria-controls="dropdown-animated">
-          Account <span class="caret"></span>
-        </button>
-        <ul id="dropdown-animated" *dropdownMenu class="dropdown-menu"
-            role="menu" aria-labelledby="button-animated">
-          <li role="menuitem"><a class="dropdown-item" href="#">Edit Profile</a></li>
-          <li role="menuitem"><a class="dropdown-item" href="#" (click)="logout()">Logout</a></li>
-        </ul>
+      <div class="btn-group" dropdown *ngIf="(accountService.currentUser$ | async) as user">
+          <button id="button-animated" dropdownToggle type="button" class="btn btn-info dropdown-toggle"
+                  aria-controls="dropdown-animated">
+            Welcome {{user.username | titlecase}} <span class="caret"></span>
+          </button>
+          <ul id="dropdown-animated" *dropdownMenu class="dropdown-menu"
+              role="menu" aria-labelledby="button-animated">
+            <li role="menuitem"><a class="dropdown-item" href="#">Edit Profile</a></li>
+            <li role="menuitem"><a class="dropdown-item" href="#" (click)="logout()">Logout</a></li>
+          </ul>
       </div>
 
       <form *ngIf="!(accountService.currentUser$ | async)" #loginForm="ngForm" class="form-inline d-flex" (ngSubmit)="login()" autocomplete="off">
@@ -38,7 +40,7 @@
           class="form-control ml-2"
           type="password"
           placeholder="Password" required>
-        <button class="btn btn-outline-success ml-2" type="submit">Login</button>
+        <button class="btn btn-success ml-2" type="submit">Login</button>
       </form>
   </div>
 </nav>
