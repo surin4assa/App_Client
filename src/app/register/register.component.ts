@@ -20,13 +20,14 @@ export class RegisterComponent implements OnInit {
       console.log(response)
       this.cancel();
     }, error => {
-      //console.error(error);
-      if(error.error.errors){
-          for (let e in error.error.errors){
-            this.toastr.error(error.error.errors[e]);
-          }
-      }
-      else this.toastr.error(error.error);
+      console.error(error);
+      //this.toastr.error(error.error)
+      // if(error.error.errors){
+      //     for (let e in error.error.errors){
+      //       this.toastr.error(error.error.errors[e]);
+      //     }
+      // }
+      // else this.toastr.error(error.error);
     })
   }
 
