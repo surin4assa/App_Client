@@ -19,14 +19,18 @@
       </ul>
 
       <div class="btn-group" dropdown *ngIf="(accountService.currentUser$ | async) as user">
-          <button id="button-animated" dropdownToggle type="button" class="btn btn-info dropdown-toggle"
-                  aria-controls="dropdown-animated">Welcome {{user.username | titlecase}} <span class="caret"></span>
-          </button>
-          <ul id="dropdown-animated" *dropdownMenu class="dropdown-menu"
-              role="menu" aria-labelledby="button-animated">
-            <li role="menuitem"><a class="dropdown-item" routerLink="/member/edit">Edit Profile</a></li>
-            <li role="menuitem"><a class="dropdown-item" (click)="logout()">Logout</a></li>
-          </ul>
+
+        <button id="button-animated" dropdownToggle type="button"
+          class="btn btn-outline-secondary dropdown-toggle ml-2"
+          aria-controls="dropdown-animated">Welcome {{user.username | titlecase}} <span class="caret"></span>
+        </button>
+        <ul id="dropdown-animated" *dropdownMenu class="dropdown-menu text-left ml-2"
+          role="menu" aria-labelledby="button-animated">
+          <li role="menuitem"><a class="dropdown-item" routerLink="/member/edit">Edit Profile</a></li>
+          <li role="menuitem"><a class="dropdown-item" (click)="logout()">Logout</a></li>
+        </ul>
+        <img src="{{user.photoUrl}}" alt="{{user.username}}" class="ml-2">
+
       </div>
 
       <form *ngIf="!(accountService.currentUser$ | async)" #loginForm="ngForm" class="form-inline d-flex" (ngSubmit)="login()" autocomplete="off">

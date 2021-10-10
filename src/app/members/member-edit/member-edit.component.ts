@@ -22,8 +22,6 @@ export class MemberEditComponent implements OnInit {
   }
   member: Member;
   user: User;
-  // galleryOptions: NgxGalleryOptions[];
-  // galleryImages: NgxGalleryImage[];
 
   constructor(private accountService: AccountService, private memberService: MembersService, private toastr: ToastrService) {
     this.accountService.currentUser$.pipe(take(1)).subscribe(user => this.user = user);
@@ -31,36 +29,11 @@ export class MemberEditComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadMember();
-
-    // this.galleryOptions = [
-    //   {
-    //     width: '500px',
-    //     height: '500px',
-    //     imagePercent: 100,
-    //     thumbnailsColumns: 4,
-    //     imageAnimation: NgxGalleryAnimation.Slide,
-    //     preview: false
-    //   }
-    // ]
   }
-
-  // getImages(): NgxGalleryImage[] {
-  //   const imageUrls = [];
-  //   for (const photo of this.member.photos) {
-  //     imageUrls.push({
-  //       small: photo?.url,
-  //       medium: photo?.url,
-  //       big: photo?.url
-  //     })
-  //   }
-
-  //   return imageUrls;
-  // }
 
   loadMember(){
     this.memberService.getMember(this.user.username).subscribe(member => {
       this.member = member;
-      //this.galleryImages = this.getImages();
     })
   }
 

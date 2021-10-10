@@ -14,7 +14,9 @@ export class BusyService {
     this.spinnerService.show(undefined, {
       type: 'line-scale-party',
       bdColor: 'rgba(255,255,255,0)',
-      color: '#333333'
+      color: '#fff',
+      fullScreen: false,
+      size: 'large'
     });
   }
 
