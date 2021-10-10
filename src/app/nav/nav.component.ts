@@ -19,6 +19,10 @@ export class NavComponent implements OnInit {
   }
 
   login(){
+    for(let i in this.model) {
+      this.model[i] = this.model[i].trim();
+    }
+
     this.accountService.login(this.model).subscribe(response => {
       this.router.navigateByUrl('/members')
     }, error => {
