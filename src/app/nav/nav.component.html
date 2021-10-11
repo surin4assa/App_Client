@@ -29,7 +29,7 @@
           <li role="menuitem"><a class="dropdown-item" routerLink="/member/edit">Edit Profile</a></li>
           <li role="menuitem"><a class="dropdown-item" (click)="logout()">Logout</a></li>
         </ul>
-        <img src="{{user.photoUrl}}" alt="{{user.username}}" class="ml-2">
+        <img src="{{user.photoUrl || './assets/user.png'}}" alt="{{user.username}}" class="ml-2">
 
       </div>
 
