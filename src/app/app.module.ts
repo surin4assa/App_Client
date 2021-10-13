@@ -1,3 +1,4 @@
+import { MemberMessagesComponent } from './members/member-messages/member-messages.component';
 import { JwtInterceptor } from './_interceptors/jwt.interceptor';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -43,7 +44,8 @@ import { DateInputComponent } from './_forms/date-input/date-input.component';
     MemberEditComponent,
     PhotoEditorComponent,
     TextInputComponent,
-    DateInputComponent
+    DateInputComponent,
+    MemberMessagesComponent
   ],
   imports: [
     BrowserModule,
