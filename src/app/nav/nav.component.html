@@ -12,6 +12,9 @@
           <li class="nav-item">
             <a class="nav-link" routerLink='/messages' routerLinkActive='active'>Messages</a>
           </li>
+          <li class="nav-item" *appHasRole='["Admin", "Moderator"]'>
+            <a class="nav-link" routerLink='/admin' routerLinkActive='active'>Admin</a>
+          </li>
         </ng-container>
         <li class="nav-item">
           <a routerLink='/errors' routerLinkActive='active' class="nav-link">Errors</a>
@@ -22,7 +25,7 @@
 
         <button id="button-animated" dropdownToggle type="button"
           class="btn btn-outline-secondary dropdown-toggle ml-2"
-          aria-controls="dropdown-animated">Welcome {{user.knownAs | titlecase}} <span class="caret"></span>
+          aria-controls="dropdown-animated">Welcome {{user.knownAs || user.username | titlecase}} <span class="caret"></span>
         </button>
         <ul id="dropdown-animated" *dropdownMenu class="dropdown-menu text-left ml-2"
           role="menu" aria-labelledby="button-animated">

@@ -1,12 +1,9 @@
 import { User } from 'src/app/_models/user';
-import { AccountService } from './../../_services/account.service';
 import { UserParams } from './../../_models/userParams';
 import { Pagination } from './../../_models/pagination';
 import { Component, OnInit } from '@angular/core';
 import { Member } from 'src/app/_models/member';
 import { MembersService } from 'src/app/_services/members.service';
-import { take } from 'rxjs/operators';
-
 @Component({
   selector: 'app-member-list',
   templateUrl: './member-list.component.html',

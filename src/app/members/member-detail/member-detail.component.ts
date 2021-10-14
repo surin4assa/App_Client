@@ -16,12 +16,12 @@ import { ThrowStmt } from '@angular/compiler';
 export class MemberDetailComponent implements OnInit {
   @ViewChild('memberTabs', {static: true}) memberTabs: TabsetComponent;
   member: Member;
-  galleryOptions: NgxGalleryOptions[];
-  galleryImages: NgxGalleryImage[];
+  galleryOptions: NgxGalleryOptions[] = [];
+  galleryImages: NgxGalleryImage[] = [];
   activeTab: TabDirective;
   messages: Message[] = [];
 
-  constructor(private memberService: MembersService, private route: ActivatedRoute, private messageService: MessageService) { }
+  constructor(private route: ActivatedRoute, private messageService: MessageService) { }
 
   ngOnInit(): void {
     this.route.data.subscribe(data => {
@@ -38,7 +38,7 @@ export class MemberDetailComponent implements OnInit {
         height: '500px',
         imagePercent: 100,
         thumbnailsColumns: 4,
-        imageAnimation: NgxGalleryAnimation.Slide,
+        imageAnimation: NgxGalleryAnimation.Fade,
         preview: false
       }
     ]
@@ -49,9 +49,9 @@ export class MemberDetailComponent implements OnInit {
     const imageUrls = [];
     for (const photo of this.member.photos) {
       imageUrls.push({
-        small: photo?.url,
-        medium: photo?.url,
-        big: photo?.url
+        small: photo?.url == undefined ? './assets/user.png' : photo.url,
+        medium: photo?.url == undefined ? './assets/user.png' : photo.url,
+        big: photo?.url == undefined ? './assets/user.png' : photo.url,
       })
     }
 
