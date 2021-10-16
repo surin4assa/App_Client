@@ -14,6 +14,7 @@ import { MessagesComponent } from './messages/messages.component';
 import { AuthGuard } from './_guards/auth.guard';
 import { AdminPanelComponent } from './admin/admin-panel/admin-panel.component';
 import { AdminGuard } from './_guards/admin.guard';
+import { RefreshComponent } from './refresh/refresh/refresh.component';
 
 const routes: Routes = [
   {path:'', component: HomeComponent},
@@ -32,6 +33,7 @@ const routes: Routes = [
   },
   {path: 'errors', component: TestErrorsComponent},
   {path: 'not-found', component: NotFoundComponent},
+  {path: 'refresh', component: RefreshComponent},
   {path: 'server-error', component: ServerErrorComponent},
   {path:'**', component: NotFoundComponent, pathMatch:'full'}
 ];

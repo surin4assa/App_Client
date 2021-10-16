@@ -3,7 +3,7 @@ export interface Group {
   connections: Connection[];
 }
 
-export interface Connection {
+interface Connection {
   connectionId: string;
   username: string;
 }

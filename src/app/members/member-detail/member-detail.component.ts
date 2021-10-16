@@ -26,7 +26,8 @@ export class MemberDetailComponent implements OnInit, OnDestroy {
 
   constructor(private route: ActivatedRoute, private messageService: MessageService,
     public presence: PresenceService, private accountService: AccountService, private router: Router) {
-      this.accountService.currentUser$.pipe(take(1)).subscribe(user => this.user = user)
+      this.accountService.currentUser$.pipe(take(1)).subscribe(user => this.user = user);
+      this.router.routeReuseStrategy.shouldReuseRoute = () => false;
   }
 
   ngOnInit(): void {
