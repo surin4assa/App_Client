@@ -32,6 +32,7 @@ import { UserManagementComponent } from './admin/user-management/user-management
 import { PhotoManagementComponent } from './admin/photo-management/photo-management.component';
 import { RolesModalComponent } from './modal/roles-modal/roles-modal.component';
 import { RefreshComponent } from './refresh/refresh/refresh.component';
+import { ConfirmDialogComponent } from './modal/confirm-dialog/confirm-dialog.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { RefreshComponent } from './refresh/refresh/refresh.component';
     UserManagementComponent,
     PhotoManagementComponent,
     RolesModalComponent,
-    RefreshComponent
+    RefreshComponent,
+    ConfirmDialogComponent
   ],
   imports: [
     BrowserModule,
