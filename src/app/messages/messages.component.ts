@@ -1,10 +1,8 @@
 import { ConfirmService } from './../_services/confirm.service';
 import { MessageService } from './../_services/message.service';
-import { PaginationService } from './../_services/pagination.service';
 import { Component, OnInit } from '@angular/core';
 import { Message } from '../_models/message';
 import { Pagination } from '../_models/pagination';
-
 @Component({
   selector: 'app-messages',
   templateUrl: './messages.component.html',
@@ -13,9 +11,9 @@ import { Pagination } from '../_models/pagination';
 export class MessagesComponent implements OnInit {
   messages: Message[];
   pagination: Pagination;
-  container: string = 'Unread';
+  container: string = 'Inbox';
   pageNumber: number = 1;
-  pageSize: number = 5;
+  pageSize: number = 6;
   loading = false;
 
   constructor(private messageService: MessageService, private confirmService: ConfirmService) { }
@@ -26,20 +24,31 @@ export class MessagesComponent implements OnInit {
 
   loadMessages(){
     this.loading = true;
+    //console.log('start loading = true -' + this.loading)
     this.messageService.getMessages(this.pageNumber, this.pageSize, this.container)
       .subscribe(response => {
         this.messages = response.result;
         this.pagination = response.pagination;
         this.loading = false;
+        //console.log('stop loading = false-' + this.loading)
     });
   }
 
   deleteMessage(id: number){
+    this.messageService.deleteMessage(id).subscribe(() => {
+      this.messages.splice(this.messages.findIndex(m => m.id === id), 1);
+    })
+  }
+
+  deleteMessages(){
+    if(this.messages.every(m => !m.isToDelete)) return; //nothing checked
     this.confirmService.confirm("Confirm delete message", 'This cannot be undone').subscribe(result => {
       if(result){
-        this.messageService.deleteMessage(id).subscribe(() => {
-          this.messages.splice(this.messages.findIndex(m => m.id === id), 1);
-        })
+        for(let message of this.messages){
+          if (message.isToDelete){
+            this.deleteMessage(message.id);
+          }
+        }
       }
     })
   }

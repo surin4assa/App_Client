@@ -7,26 +7,42 @@
   <form #form='ngForm' class='form-inline mb-3' (ngSubmit)='loadMembers()' autocomplete="off">
 
     <div class="form-group">
-      <label>Age from: </label>
-      <input type="number" class="form-control ml-1" name='minAge' style='width: 70px;'
-        [(ngModel)]="userParams.minAge">
+      <mat-form-field class="input-number-form" appearance="fill">
+        <mat-label>Min. Age</mat-label>
+        <input matInput placeholder="18" name='minAge' [(ngModel)]="userParams.minAge" type='number'>
+      </mat-form-field>
     </div>
 
-    <div class="form-group px-2">
-      <label>to: </label>
-      <input type="number" class="form-control ml-1" name='maxAge' style='width: 70px;'
-        [(ngModel)]="userParams.maxAge">
+    <div class="form-group">
+      <mat-form-field class="input-number-form ml-2" appearance="fill">
+        <mat-label>Max. Age</mat-label>
+        <input matInput placeholder="99" name='maxAge' [(ngModel)]="userParams.maxAge" type='number'>
+      </mat-form-field>
     </div>
 
-    <div class="form-group px-2">
-      <label>Show: </label>
-      <select name="gender" style="width: 130px;" class="form-control ml-1" [(ngModel)]="userParams.gender">
-        <option *ngFor="let gender of genderList" [value]="gender.value">{{gender.display}}</option>
-      </select>
+    <div class="form-group">
+      <mat-form-field class='select-gender-form ml-4' appearance="fill">
+        <mat-label>Gender</mat-label>
+        <mat-select [(ngModel)]="userParams.gender" name="gender">
+            <mat-option *ngFor="let gender of genderList" [value]="gender.value">{{gender.display}}</mat-option>
+        </mat-select>
+      </mat-form-field>
     </div>
 
-    <button class="btn btn-primary ml-1" type="submit">Apply filter</button>
-    <button (click)='resetFilters()' class="btn btn-primary ml-1" type='button'>Reset filter</button>
+    <div class="form-group">
+      <mat-form-field class="select-member-perpage-form ml-4" appearance="fill">
+        <mat-label>Members per page</mat-label>
+        <mat-select [(ngModel)]="userParams.pageSize" name="pageSize">
+            <mat-option *ngFor="let pageSize of pageSizeList" [value]="pageSize">{{pageSize}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <button mat-raised-button color='primary' class='ml-4' type="submit">Apply filter</button>
+    <button (click)='resetFilters()' mat-raised-button color='accent' class="ml-1" type='button'>Reset filter</button>
+
+
+
     <div class="col">
       <div class="btn-group float-right">
         <button

@@ -1,3 +1,5 @@
+import { ToastrService } from 'ngx-toastr';
+import { MembersService } from './../../_services/members.service';
 import { AccountService } from './../../_services/account.service';
 import { PresenceService } from './../../_services/presence.service';
 import { MessageService } from './../../_services/message.service';
@@ -24,8 +26,8 @@ export class MemberDetailComponent implements OnInit, OnDestroy {
   messages: Message[] = [];
   user: User;
 
-  constructor(private route: ActivatedRoute, private messageService: MessageService,
-    public presence: PresenceService, private accountService: AccountService, private router: Router) {
+  constructor(private route: ActivatedRoute, private messageService: MessageService, private membersService: MembersService,
+    public presence: PresenceService, private accountService: AccountService, private router: Router, private toastr: ToastrService) {
       this.accountService.currentUser$.pipe(take(1)).subscribe(user => this.user = user);
       this.router.routeReuseStrategy.shouldReuseRoute = () => false;
   }
@@ -87,6 +89,12 @@ export class MemberDetailComponent implements OnInit, OnDestroy {
     } else {
       this.messageService.stopHubConnection();
     }
+  }
+
+  addLike(member: Member){
+    this.membersService.addLike(member.username).subscribe(() => {
+      this.toastr.success('You have liked '+ member.knownAs);
+    })
   }
 
   ngOnDestroy(): void {

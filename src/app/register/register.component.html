@@ -4,12 +4,10 @@
 
   <div class="form-group">
     <label style="margin-right: 10px;" class="control-label">I am a: </label>
-    <label class="radio-inline">
-      <input type="radio" value='male' formControlName='gender'> Male
-    </label>
-    <label class="radio-inline">
-      <input type="radio" value='female' formControlName='gender' class='ml-3'> Female
-    </label>
+    <mat-radio-group formControlName='gender'>
+        <mat-radio-button value="male">Male</mat-radio-button>
+        <mat-radio-button value="female" class='ml-2'>Female</mat-radio-button>
+    </mat-radio-group>
   </div>
 
   <app-text-input
@@ -57,6 +55,3 @@
     <button class="btn btn-secondary mr-2" (click)="cancel()" type="button">Cancel</button>
   </div>
 </form>
-
-<p>Form Value: {{registerForm.value | json}}</p>
-<p>Form status: {{registerForm.status | json}}</p>

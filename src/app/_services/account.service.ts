@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { PresenceService } from './presence.service';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -15,7 +16,7 @@ export class AccountService {
   private currentUserSource = new ReplaySubject<User>(1);
   currentUser$ = this.currentUserSource.asObservable();
 
-  constructor(private http: HttpClient, private presenceService: PresenceService) { };
+  constructor(private http: HttpClient, private presenceService: PresenceService, private toastr: ToastrService) { };
 
   login(model: any){
     return this.http.post(this.baseUrl + 'account/login', model).pipe(

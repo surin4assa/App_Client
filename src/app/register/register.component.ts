@@ -1,8 +1,7 @@
 import { Router } from '@angular/router';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { AccountService } from '../_services/account.service';
-import { ThrowStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-register',
@@ -51,7 +50,7 @@ export class RegisterComponent implements OnInit {
 
   register(){
     if (this.registerForm.invalid) return;
-    this.accountService.register(this.registerForm.value).subscribe(response => {
+    this.accountService.register(this.registerForm.value).subscribe(() => {
       this.router.navigateByUrl('/members');
     }, error => {
       this.validationErrors = error;

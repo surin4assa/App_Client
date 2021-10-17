@@ -1,0 +1,15 @@
+.input-number-form {
+  min-width: 50px;
+  max-width: 100px;
+  width: 100%;
+}
+
+.select-gender-form {
+  max-width: 80px;
+  width: 100%;
+}
+
+.select-member-perpage-form {
+  max-width: 120px;
+  width: 100%;
+}

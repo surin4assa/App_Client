@@ -14,7 +14,8 @@ export class PaginationService {
     return this.http.get<T>(url, { observe: 'response', params }).pipe(
       map((response) => {
         paginatedResult.result = response.body;
-        if (response.headers.get('Pagination') != null) {
+        //console.log(paginatedResult.result)
+        if (response.headers.get('Pagination') !== null) {
           paginatedResult.pagination = JSON.parse(response.headers.get('Pagination'));
         }
         return paginatedResult;

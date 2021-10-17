@@ -1,21 +1,27 @@
 <div class="row mb-4">
   <div class="btn-group">
     <button
-      class="btn btn-secondary"
+      mat-raised-button
+      color='accent'
+      class=""
       btnRadio='Unread'
       [(ngModel)]="container"
       (click)="loadMessages()">
       <i class="fa fa-envelope">Unread</i>
     </button>
     <button
-      class="btn btn-secondary"
+      mat-raised-button
+      color='primary'
+      class="ml-2"
       btnRadio='Inbox'
       [(ngModel)]="container"
       (click)="loadMessages()">
       <i class="fa fa-envelope-open">Inbox</i>
     </button>
     <button
-      class="btn btn-secondary"
+      mat-raised-button
+      color='default'
+      class="ml-2"
       btnRadio='Outbox'
       [(ngModel)]="container"
       (click)="loadMessages()">
@@ -41,17 +47,15 @@
 
 <div class="row" *ngIf="messages?.length === 0"><h3>No messages</h3></div>
 
-<div class="row" *ngIf="messages?.length > 0">
+<div [hidden]="loading" class="row" *ngIf="messages?.length > 0">
   <table class="table table-hover" style='cursor: pointer;'>
     <tr>
       <th style='width: 40%;'>Message</th>
-      <th style='width: 20%;' *ngIf="container == 'Unread' || container == 'Inbox'">From</th>
-      <th style='width: 20%;' *ngIf="container == 'Outbox'">To</th>
-      <th style='width: 20%;' *ngIf="container == 'Unread' || container == 'Inbox'">Received</th>
-      <th style='width: 20%;' *ngIf="container == 'Outbox'">Sent</th>
+      <th style='width: 20%;'>{{container == 'Outbox' ? 'To' : 'From'}}</th>
+      <th style='width: 20%;'>{{container == 'Outbox' ? 'Sent' : 'Received'}}</th>
       <th style='width: 20%;'>Delete</th>
     </tr>
-    <tr [hidden]='loading' *ngFor="let message of messages"
+    <tr *ngFor="let message of messages"
       routerLink='/members/{{container == "Outbox"
         ? message.recipientUsername
         : message.senderUsername }}'
@@ -63,25 +67,36 @@
               src="{{message.recipientPhotoUrl || './assets/user.png'}}"
               alt="{{message.recipientUsername}}"
               class="img-circle rounded-circle mr-2">
-            <strong>{{message.recipientUsername}}</strong>
+            <strong>{{message.recipientUsername | titlecase}}</strong>
           </div>
           <div *ngIf='container !== "Outbox"'>
             <img
               src="{{message.senderPhotoUrl || './assets/user.png'}}"
               alt="{{message.senderUsername}}"
               class="img-circle rounded-circle mr-2">
-            <strong>{{message.senderUsername}}</strong>
+            <strong>{{message.senderUsername | titlecase}}</strong>
           </div>
         </td>
         <td>{{message.messageSent | timeago}}</td>
         <td>
-          <button
+          <mat-checkbox
+            [(ngModel)]="message.isToDelete"
+            name="isToDelete"
+            color="warn"
             (click)='$event.stopPropagation()'
-            (click)='deleteMessage(message.id)'
-            class="btn btn-danger"
-            >Delete
-          </button>
+            >
+          </mat-checkbox>
         </td>
+    </tr>
+    <tr>
+      <td colspan="3"></td>
+      <td>
+        <button
+          mat-mini-fab
+          color='warn'
+          (click)='deleteMessages()'
+          ><mat-icon class="mat-18">delete</mat-icon></button>
+      </td>
     </tr>
   </table>
 </div>

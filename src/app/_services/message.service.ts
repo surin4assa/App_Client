@@ -67,8 +67,8 @@ export class MessageService {
   }
   getMessages(pageNumber: number, pageSize: number, container: string){
     let params = this.paginationService.getPaginationHeaders(pageNumber, pageSize);
-    params = params.append('Container', container);
-    return this.paginationService.getPaginatedResult<Message[]>(`${this.baseUrl}messages`, params);
+    params = params.append('container', container);
+    return this.paginationService.getPaginatedResult<Partial<Message[]>>(`${this.baseUrl}messages`, params);
   }
 
   getMessageThread(username: string){

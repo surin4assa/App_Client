@@ -53,7 +53,7 @@ export class MembersService {
     params = params.append('gender', userParams.gender);
     params = params.append('orderBy', userParams.orderBy)
 
-    return this.paginationService.getPaginatedResult<Member[]>(`${this.baseUrl}users`, params).pipe(
+    return this.paginationService.getPaginatedResult<Partial<Member[]>>(`${this.baseUrl}users`, params).pipe(
       map(response => {
         this.memberCache.set(memberCacheKey, response)
         return response;

@@ -31,8 +31,8 @@ import { HasRoleDirective } from './_directives/has-role.directive';
 import { UserManagementComponent } from './admin/user-management/user-management.component';
 import { PhotoManagementComponent } from './admin/photo-management/photo-management.component';
 import { RolesModalComponent } from './modal/roles-modal/roles-modal.component';
-import { RefreshComponent } from './refresh/refresh/refresh.component';
 import { ConfirmDialogComponent } from './modal/confirm-dialog/confirm-dialog.component';
+import { MaterialsModule } from './_modules/materials.module';
 
 @NgModule({
   declarations: [
@@ -58,7 +58,6 @@ import { ConfirmDialogComponent } from './modal/confirm-dialog/confirm-dialog.co
     UserManagementComponent,
     PhotoManagementComponent,
     RolesModalComponent,
-    RefreshComponent,
     ConfirmDialogComponent
   ],
   imports: [
@@ -69,6 +68,7 @@ import { ConfirmDialogComponent } from './modal/confirm-dialog/confirm-dialog.co
     ReactiveFormsModule,
     FormsModule,
     SharedModule,
+    MaterialsModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
