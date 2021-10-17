@@ -58,7 +58,7 @@ import { MaterialsModule } from './_modules/materials.module';
     UserManagementComponent,
     PhotoManagementComponent,
     RolesModalComponent,
-    ConfirmDialogComponent
+    ConfirmDialogComponent,
   ],
   imports: [
     BrowserModule,

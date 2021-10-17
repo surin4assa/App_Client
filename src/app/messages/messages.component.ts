@@ -1,6 +1,6 @@
 import { ConfirmService } from './../_services/confirm.service';
 import { MessageService } from './../_services/message.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Message } from '../_models/message';
 import { Pagination } from '../_models/pagination';
 @Component({
@@ -24,13 +24,10 @@ export class MessagesComponent implements OnInit {
 
   loadMessages(){
     this.loading = true;
-    //console.log('start loading = true -' + this.loading)
-    this.messageService.getMessages(this.pageNumber, this.pageSize, this.container)
-      .subscribe(response => {
+    this.messageService.getMessages(this.pageNumber, this.pageSize, this.container).subscribe(response => {
         this.messages = response.result;
         this.pagination = response.pagination;
         this.loading = false;
-        //console.log('stop loading = false-' + this.loading)
     });
   }
 
