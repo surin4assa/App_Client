@@ -42,11 +42,12 @@
     <button (click)='resetFilters()' mat-raised-button color='accent' class="ml-1" type='button'>Reset filter</button>
 
 
-
     <div class="col">
       <div class="btn-group float-right">
+        <label>Sort by: </label>
         <button
-          class="btn btn-outline-secondary"
+          mat-raised-button
+          class='ml-1'
           name='orderBy'
           (click)='loadMembers()'
           [(ngModel)]="userParams.orderBy"
@@ -54,7 +55,8 @@
           >Last Active
         </button>
         <button
-          class="btn btn-outline-secondary"
+          mat-raised-button
+          class='ml-1'
           name='orderBy'
           (click)='loadMembers()'
           [(ngModel)]="userParams.orderBy"

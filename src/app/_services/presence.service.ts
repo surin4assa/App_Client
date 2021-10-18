@@ -32,17 +32,19 @@ export class PresenceService {
 
     this.hubConnection.on('UserIsOnline', username => {
       this.onlineUsers$.pipe(take(1)).subscribe(usernames => {
+        console.log('UserIsOnline '+usernames)
         this.onlineUsersSource.next([...usernames, username]);
       })
     })
 
     this.hubConnection.on('UserIsOffline', username => {
       this.onlineUsers$.pipe(take(1)).subscribe(usernames => {
+        console.log('UserIsOnffline '+usernames)
         this.onlineUsersSource.next([...usernames.filter(x => x !== username)]);
     })
 
     this.hubConnection.on('GetOnlineUsers', (usernames: string[]) => {
-        console.log(usernames)
+        console.log('GetOnlineUsers '+usernames)
         this.onlineUsersSource.next(usernames);
       })
     })

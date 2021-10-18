@@ -10,6 +10,7 @@ import { AccountService } from '../_services/account.service';
 })
 export class NavComponent implements OnInit {
   model: any = {}
+  title = 'Sweet Matched'
 
   constructor(public accountService: AccountService, private router: Router, private toastr: ToastrService) { }
 

@@ -20,4 +20,10 @@
 
 .send-message-button{
   max-height: 40px;
+  width: 100%;
 }
+
+.text-enter-field{
+  width: 85%;
+}
+
