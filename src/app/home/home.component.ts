@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
   registerMode = false;
+  title = environment.title;
 
   constructor() { }
 

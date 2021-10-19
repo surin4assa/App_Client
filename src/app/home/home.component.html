@@ -1,10 +1,9 @@
 <div class="container mt-5">
   <div style="text-align: center;" *ngIf="!registerMode">
-    <h1>Find Your Match</h1>
-    <p class="lead">Come on in to view your matches.. all you need is to sign up</p>
+    <h1>Welcome to {{title}}!</h1>
+    <p class="lead">Sign up and enjoy the community</p>
     <div class="text-center">
-      <button (click)="registerToggle()" class="btn btn-success btn-lg mr-2">Register</button>
-      <button class="btn btn-info btn-lg">Learn more</button>
+      <button mat-raised-button color='primary' (click)="registerToggle()" class="mr-2">Register</button>
     </div>
   </div>
 

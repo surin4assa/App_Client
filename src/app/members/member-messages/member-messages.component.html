@@ -30,7 +30,7 @@
                 </span>
               </small>
               <div>
-                <p class="text-{{message.senderUsername != username ? 'white' : 'info'}}">{{message.content}}</p>
+                <p class="{{message.senderUsername != username ? '' : 'text-primary'}}">{{message.content}}</p>
               </div>
             </div>
           </div>
@@ -41,19 +41,19 @@
   <div class="card-footer">
     <form #messageForm='ngForm' (ngSubmit)='sendMessage()' autocomplete="off">
       <div class="input-group">
-        <mat-form-field class='text-enter-field'>
+        <mat-form-field class='text-enter-field ml-3 mt-2'>
           <input
             matInput
             name='messageContent'
             required
             [(ngModel)]="messageContent"
             type="text"
-            class="form-control mt-2"
+            class="form-control"
             placeholder="Send a private message">
-          </mat-form-field>
-          <div class="input-group-append">
-            <button mat-raised-button [disabled]='!messageForm.valid' color='primary' class="ml-2 mt-4 fa fa-paper-plane send-message-button" type="submit">Send</button>
-          </div>
+        </mat-form-field>
+        <div class="input-group-append">
+          <button mat-raised-button [disabled]='!messageForm.valid' color='primary' class="ml-4 mt-4 fa fa-paper-plane send-message-button" type="submit"></button>
+        </div>
       </div>
     </form>
   </div>

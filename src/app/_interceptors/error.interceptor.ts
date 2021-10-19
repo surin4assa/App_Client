@@ -18,6 +18,8 @@ export class ErrorInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     return next.handle(request).pipe(
       catchError(error => {
+        //error = JSON.parse(error)
+
         if (error){
           switch (error.status) {
             case 400:
@@ -36,7 +38,13 @@ export class ErrorInterceptor implements HttpInterceptor {
                 }
               }
               else {
-                this.toastr.error(error.error, error.status);
+                // var ers = JSON.parse(error.error)
+                // if (Array.isArray(ers)){
+                //   for(var e of ers){
+                //     this.toastr.error(e, error.status);
+                //   }
+                // } else
+                  this.toastr.error(error.error, error.status);
               }
               break;
             case 401:

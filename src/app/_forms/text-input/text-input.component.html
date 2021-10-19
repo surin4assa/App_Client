@@ -13,5 +13,7 @@
     <div *ngIf="ngControl.control.errors?.maxlength" class="invalid-feedback">
       {{label}} must be at most {{ngControl.control.errors.maxlength['requiredLength']}}</div>
 
-    <div *ngIf="ngControl.control.errors?.isMatching" class="invalid-feedback">Passwords do not match</div>
+    <div *ngIf="ngControl.control.errors?.isMatching" class="invalid-feedback">{{type | titlecase}}s do not match</div>
+
+    <div *ngIf="ngControl.control.errors?.isPasswordRepeat" class="invalid-feedback">Cannot use old password</div>
 </div>

@@ -11,7 +11,7 @@
 .chat li {
   margin-bottom: 10px;
   padding-bottom: 10px;
-  border-bottom: 1px dotted rgb(210, 212, 189);
+  border-bottom: 1px dotted rgb(116, 111, 116);
 }
 
 .rounded-circle {
@@ -19,11 +19,13 @@
 }
 
 .send-message-button{
-  max-height: 40px;
+  max-height: 45%;
+  max-width: 50%;
   width: 100%;
+  float: right;
 }
 
 .text-enter-field{
-  width: 85%;
+  width: 80%;
 }
 

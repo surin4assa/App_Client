@@ -6,6 +6,7 @@ import { MatButtonModule } from '@angular/material/button'
 import { MatCheckboxModule } from '@angular/material/checkbox'
 import { MatRadioModule } from '@angular/material/radio'
 import { MatIconModule } from '@angular/material/icon'
+import { MatMenuModule } from '@angular/material/menu'
 
 
 
@@ -18,7 +19,8 @@ import { MatIconModule } from '@angular/material/icon'
     MatButtonModule,
     MatCheckboxModule,
     MatRadioModule,
-    MatIconModule
+    MatIconModule,
+    MatMenuModule
   ],
   exports: [
     MatSelectModule,
@@ -26,7 +28,8 @@ import { MatIconModule } from '@angular/material/icon'
     MatButtonModule,
     MatCheckboxModule,
     MatRadioModule,
-    MatIconModule
+    MatIconModule,
+    MatMenuModule
   ]
 })
 export class MaterialsModule { }

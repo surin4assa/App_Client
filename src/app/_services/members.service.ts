@@ -1,6 +1,7 @@
+import { PasswordUpdate } from './../_models/passwordUpdate';
 import { AccountService } from './account.service';
 import { UserParams } from './../_models/userParams';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { of } from 'rxjs';
 import { map, take } from 'rxjs/operators';
@@ -94,5 +95,10 @@ export class MembersService {
     let params = this.paginationService.getPaginationHeaders(pageNumber, pageSize)
     params = params.append('predicate', predicate)
     return this.paginationService.getPaginatedResult<Partial<Member[]>>(`${this.baseUrl}likes`, params);
+  }
+
+  changePassword(passwordUpdate: PasswordUpdate){
+    passwordUpdate.username = this.user.username;
+    return this.http.put(`${this.baseUrl}users/change-password`, passwordUpdate, {observe: 'response', responseType: 'text'});
   }
 }

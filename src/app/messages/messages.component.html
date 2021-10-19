@@ -33,56 +33,60 @@
 <div class="row" *ngIf="messages?.length === 0"><h3>No messages</h3></div>
 
 <div [hidden]="loading" class="row" *ngIf="messages?.length > 0">
-  <table class="table table-hover" style='cursor: pointer;'>
-    <tr>
-      <th style='width: 40%;'>Message</th>
-      <th style='width: 20%;'>{{container == 'Outbox' ? 'To' : 'From'}}</th>
-      <th style='width: 20%;'>{{container == 'Outbox' ? 'Sent' : 'Received'}}</th>
-      <th style='width: 20%;'>Delete</th>
-    </tr>
-    <tr *ngFor="let message of messages"
-      routerLink='/members/{{container == "Outbox"
-        ? message.recipientUsername
-        : message.senderUsername }}'
-        [queryParams]='{tab:3}'>
-        <td>{{message.content}}</td>
+  <table class="table table-bordered table-striped table-hover" style='cursor: pointer;'>
+    <thead class='thead-light'>
+      <tr>
+        <th style='width: 40%;' scope='col'>Message</th>
+        <th style='width: 20%;' scope='col'>{{container == 'Outbox' ? 'To' : 'From'}}</th>
+        <th style='width: 20%;' scope='col'>{{container == 'Outbox' ? 'Sent' : 'Received'}}</th>
+        <th style='width: 20%;' scope='col'>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let message of messages">
+          <td routerLink='/members/{{container == "Outbox"
+              ? message.recipientUsername
+              : message.senderUsername }}'
+              [queryParams]='{tab:3}'
+          >{{message.content}}</td>
+          <td>
+            <div *ngIf='container === "Outbox"'>
+              <img
+                src="{{message.recipientPhotoUrl || './assets/user.png'}}"
+                alt="{{message.recipientUsername}}"
+                class="img-circle rounded-circle mr-2">
+              <strong>{{message.recipientUsername | titlecase}}</strong>
+            </div>
+            <div *ngIf='container !== "Outbox"'>
+              <img
+                src="{{message.senderPhotoUrl || './assets/user.png'}}"
+                alt="{{message.senderUsername}}"
+                class="img-circle rounded-circle mr-2">
+              <strong>{{message.senderUsername | titlecase}}</strong>
+            </div>
+          </td>
+          <td>{{message.messageSent | timeago}}</td>
+          <td>
+            <mat-checkbox
+              [(ngModel)]="message.isToDelete"
+              name="isToDelete"
+              color="warn"
+              (click)='$event.stopPropagation()'
+              >
+            </mat-checkbox>
+          </td>
+      </tr>
+      <tr>
+        <td colspan="3"></td>
         <td>
-          <div *ngIf='container === "Outbox"'>
-            <img
-              src="{{message.recipientPhotoUrl || './assets/user.png'}}"
-              alt="{{message.recipientUsername}}"
-              class="img-circle rounded-circle mr-2">
-            <strong>{{message.recipientUsername | titlecase}}</strong>
-          </div>
-          <div *ngIf='container !== "Outbox"'>
-            <img
-              src="{{message.senderPhotoUrl || './assets/user.png'}}"
-              alt="{{message.senderUsername}}"
-              class="img-circle rounded-circle mr-2">
-            <strong>{{message.senderUsername | titlecase}}</strong>
-          </div>
+          <button
+            mat-mini-fab
+            color='warn'
+            (click)='deleteMessages()'
+            ><mat-icon class="mat-18">delete</mat-icon></button>
         </td>
-        <td>{{message.messageSent | timeago}}</td>
-        <td>
-          <mat-checkbox
-            [(ngModel)]="message.isToDelete"
-            name="isToDelete"
-            color="warn"
-            (click)='$event.stopPropagation()'
-            >
-          </mat-checkbox>
-        </td>
-    </tr>
-    <tr>
-      <td colspan="3"></td>
-      <td>
-        <button
-          mat-mini-fab
-          color='warn'
-          (click)='deleteMessages()'
-          ><mat-icon class="mat-18">delete</mat-icon></button>
-      </td>
-    </tr>
+      </tr>
+    </tbody>
   </table>
 </div>
 
